@@ -1,6 +1,7 @@
 package game;
 
 import game.board.Field;
+import game.board.FieldFactory;
 import game.dimension.Dimension;
 import game.dimension.DimensionMeasure;
 import processing.core.PApplet;
@@ -10,9 +11,9 @@ public class Board {
     private Dimension view;
     private Dimension fieldSize;
 
-    public Board(Dimension view) {
+    public Board(Dimension view, Dimension fieldSize) {
         this.view = view;
-        fieldSize = new Dimension(DimensionMeasure.IN_PIXELS, 0, 0, 30, 30);
+        this.fieldSize = fieldSize;
     }
 
     public void draw(PApplet processing) {
@@ -33,7 +34,11 @@ public class Board {
 
         for (int i = dimension.getX(); i < dimension.getWidth(); i++) {
             for (int j = dimension.getY(); j < dimension.getHeight(); j++) {
-                newFields[i][j] = new Field(new Dimension(i, j, 1, 1));
+                //newFields[i][j] = new Field(new Dimension(i, j, 1, 1));
+                newFields[i][j] = new FieldFactory()
+                        .setCoordinates(i, j)
+                        .setRootImage(GameImage.IMPERIUS_GROUND)
+                        .build();
             }
         }
         return newFields;

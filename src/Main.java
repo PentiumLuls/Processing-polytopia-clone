@@ -1,4 +1,5 @@
 
+import game.GameImage;
 import game.GameManager;
 import game.exception.NoGameException;
 import processing.core.*;
@@ -15,13 +16,14 @@ public class Main extends PApplet {
 
     @Override
     public void settings() {
-        size(600, 800);
+        size(1900, 1200);
         processing = this;
         gameManager = new GameManager(processing);
     }
 
     @Override
     public void setup() {
+        GameImage.loadAll(this);
         gameManager.createGame();
     }
 

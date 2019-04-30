@@ -1,6 +1,7 @@
 package game;
 
 import game.dimension.Dimension;
+import game.dimension.DimensionMeasure;
 import game.exception.NoGameException;
 import processing.core.PApplet;
 
@@ -15,7 +16,9 @@ public class GameManager {
 
     public void createGame() {
         game = new Game();
-        game.createBoard(new Dimension(0, 0, 100, 200));
+        Dimension fieldSize = new Dimension(DimensionMeasure.IN_PIXELS, 0, 0, 200, 200);
+        Dimension boardSize = new Dimension(0, 0, 10, 10);
+        game.createBoard(boardSize, fieldSize);
     }
 
     public void draw() throws NoGameException {
